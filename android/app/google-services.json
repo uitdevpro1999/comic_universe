@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "59708576765",
+    "project_id": "comic-universe-da8f4",
+    "storage_bucket": "comic-universe-da8f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59708576765:android:dfbf1727a0e3eb9f20ff94",
+        "android_client_info": {
+          "package_name": "com.example.comic_universe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59708576765-8ee0kcm3ih3p7hkp5rou3q0rukf4m58j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGbsTCQCt1rEXdR7whcV65J90kgk3a6LY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59708576765-8ee0kcm3ih3p7hkp5rou3q0rukf4m58j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
