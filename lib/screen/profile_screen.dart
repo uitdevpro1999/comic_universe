@@ -119,6 +119,23 @@ class _ProfileScreenState extends State<ProfileScreen>{
                         children: [
                           Row(
                             children: [
+                              Icon(Icons.manage_accounts_outlined),
+                              SizedBox(width: 10,),
+                              Text("Công cụ quản trị",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
+                            ],
+                          ),
+                          Icon(Icons.navigate_next_outlined),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: 50,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
                               Icon(Icons.logout_outlined,color: Colors.redAccent,),
                               SizedBox(width: 10,),
                               Text("Đăng xuất",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18,color: Colors.redAccent),),
