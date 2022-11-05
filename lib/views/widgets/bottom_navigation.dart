@@ -1,8 +1,8 @@
-import 'package:comic_universe/screen/category_screen.dart';
-import 'package:comic_universe/screen/follow_screen.dart';
-import 'package:comic_universe/screen/home_screen.dart';
-import 'package:comic_universe/screen/profile_screen.dart';
-import 'package:comic_universe/screen/ranking_screen.dart';
+import 'package:comic_universe/views/pages/category_screen.dart';
+import 'package:comic_universe/views/pages/follow_screen.dart';
+import 'package:comic_universe/views/pages/home_screen.dart';
+import 'package:comic_universe/views/pages/profile_screen.dart';
+import 'package:comic_universe/views/pages/ranking_screen.dart';
 import 'package:flutter/material.dart';
 class BottomNav extends StatefulWidget {
   const BottomNav({Key? key}) : super(key: key);

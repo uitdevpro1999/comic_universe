@@ -1,3 +1,4 @@
+import 'package:comic_universe/views/pages/editprofile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -54,7 +55,12 @@ class _SignupScreenState extends State<SignupScreen>{
                   height: 50,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.black),
-                  child: TextButton(onPressed: (){}, child: Text("Đăng ký",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,color: Colors.white,fontSize: 18),),),
+                  child: TextButton(onPressed: (){
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => EditPScreen()),
+                    );
+                  }, child: Text("Đăng ký",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,color: Colors.white,fontSize: 18),),),
                 ),
               ],
             ),

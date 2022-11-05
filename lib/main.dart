@@ -1,4 +1,4 @@
-import 'package:comic_universe/screen/login_screen.dart';
+import 'package:comic_universe/views/pages/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

@@ -1,6 +1,6 @@
-import 'package:comic_universe/bottom_navigation.dart';
-import 'package:comic_universe/screen/home_screen.dart';
-import 'package:comic_universe/screen/signup_screen.dart';
+import 'package:comic_universe/views/pages/forgotpass_screen.dart';
+import 'package:comic_universe/views/widgets/bottom_navigation.dart';
+import 'package:comic_universe/views/pages/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -69,9 +69,14 @@ class _LoginScreenState extends State<LoginScreen>{
                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                  crossAxisAlignment: CrossAxisAlignment.start,
                  children: [
-                   TextButton(onPressed: (){}, child: Text("Quên mật khẩu",style: GoogleFonts.dosis(color: Colors.black),)),
                    TextButton(onPressed: (){
-                     Navigator.push(
+                     Navigator.pushReplacement(
+                       context,
+                       MaterialPageRoute(builder: (context) => ForgotScreen()),
+                     );
+                   }, child: Text("Quên mật khẩu",style: GoogleFonts.dosis(color: Colors.black),)),
+                   TextButton(onPressed: (){
+                     Navigator.pushReplacement(
                        context,
                        MaterialPageRoute(builder: (context) => SignupScreen()),
                      );
