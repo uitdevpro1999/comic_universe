@@ -16,7 +16,12 @@ class _FollowScreenState extends State<FollowScreen>{
            children: [
              Container(
                margin: EdgeInsets.only(top: 30),
-               child: Text("Yêu thích",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
+               child:  Row(
+                 mainAxisAlignment: MainAxisAlignment.center,
+                 children: [
+                   Text("Yêu thích",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
+                 ],
+               ),
              ),
              ListView(
                shrinkWrap: true,

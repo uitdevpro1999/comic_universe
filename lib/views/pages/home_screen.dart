@@ -230,7 +230,7 @@ class _HomeScreenState extends State<HomeScreen>{
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(width: 15,),
-                Text("Truyện mới cập nhật",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
+                Text("Truyện mới",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
                 SizedBox(width: 5,),
                 Image.asset("assets/images/thunder.png",scale:20,),
               ],

@@ -2,7 +2,7 @@ import 'package:comic_universe/views/pages/category_screen.dart';
 import 'package:comic_universe/views/pages/follow_screen.dart';
 import 'package:comic_universe/views/pages/home_screen.dart';
 import 'package:comic_universe/views/pages/profile_screen.dart';
-import 'package:comic_universe/views/pages/ranking_screen.dart';
+import 'package:comic_universe/views/pages/ranking/ranking_screen.dart';
 import 'package:flutter/material.dart';
 class BottomNav extends StatefulWidget {
   const BottomNav({Key? key}) : super(key: key);
@@ -58,7 +58,7 @@ class _BottomNavState extends State<BottomNav> {
         ],
         currentIndex: _selectedIndex,
         unselectedItemColor:Colors.grey,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.red,
         onTap: _onItemTapped,
       ),
     );
