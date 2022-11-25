@@ -1,5 +1,8 @@
+import 'package:comic_universe/ultils/contrains.dart';
+import 'package:comic_universe/views/pages/manager_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:motion_toast/motion_toast.dart';
 
 class ProfileScreen extends StatefulWidget{
   ProfileScreen({Key? key}) : super (key: key);
@@ -113,36 +116,53 @@ class _ProfileScreenState extends State<ProfileScreen>{
                     ),
                     Container(
                       height: 50,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.manage_accounts_outlined),
-                              SizedBox(width: 10,),
-                              Text("Công cụ quản trị",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
-                            ],
-                          ),
-                          Icon(Icons.navigate_next_outlined),
-                        ],
-                      ),
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ManagerScreen()),
+                          );
+                        },
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.manage_accounts_outlined),
+                                SizedBox(width: 10,),
+                                Text("Công cụ quản trị",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
+                              ],
+                            ),
+                            Icon(Icons.navigate_next_outlined),
+                          ],
+                        ),
+                      )
                     ),
                     Container(
                       height: 50,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.logout_outlined,color: Colors.redAccent,),
-                              SizedBox(width: 10,),
-                              Text("Đăng xuất",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18,color: Colors.redAccent),),
-                            ],
-                          ),
-                          Icon(Icons.navigate_next_outlined,color: Colors.redAccent,),
-                        ],
+                      child: InkWell(
+                        onTap: () async {
+                          authController.signOut();
+                          MotionToast.success(
+                            title:  Text("Success Motion Toast"),
+                            description:  Text("Example of success motion toast"),
+                          ).show(context);
+                        },
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.logout_outlined,color: Colors.redAccent,),
+                                SizedBox(width: 10,),
+                                Text("Đăng xuất",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18,color: Colors.redAccent),),
+                              ],
+                            ),
+                            Icon(Icons.navigate_next_outlined,color: Colors.redAccent,),
+                          ],
+                        ),
                       ),
                     ),
                   ],

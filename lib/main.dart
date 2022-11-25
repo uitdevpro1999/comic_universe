@@ -1,22 +1,32 @@
+import 'package:comic_universe/ultils/contrains.dart';
 import 'package:comic_universe/views/pages/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-void main() {
+import 'controllers/auth_controller.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await firebaseInitialization.then((value) {
+    Get.put(AuthController());
+  });
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: LoginScreen(),
+      // we don't really have to put the home page here
+      // GetX is going to navigate the user and clear the navigation stack
+      home: const CircularProgressIndicator(),
     );
   }
 }

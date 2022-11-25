@@ -29,25 +29,18 @@ class _RankingScreenState extends State<RankingScreen> with SingleTickerProvider
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.only(bottom: 0),
                 child: Image.asset("assets/images/ranking.jpg"),
               ),
               Container(
                 height: 30,
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(
-                    10.0,
-                  ),
                 ),
                 child: TabBar(
                   controller: _tabController,
                   // give the indicator a decoration (color and border radius)
                   indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      10.0,
-                    ),
-                    color: Colors.red,
+                    color: Colors.brown,
                   ),
                   labelColor: Colors.white,
                   unselectedLabelColor: Colors.black,

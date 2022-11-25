@@ -1,3 +1,4 @@
+import 'package:comic_universe/ultils/contrains.dart';
 import 'package:comic_universe/views/pages/editprofile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +9,8 @@ class SignupScreen extends StatefulWidget{
   _SignupScreenState createState() => _SignupScreenState();
 }
 class _SignupScreenState extends State<SignupScreen>{
+  TextEditingController _email = TextEditingController();
+  TextEditingController _pass = TextEditingController();
   Widget build(BuildContext context){
     return Scaffold(
       body: SingleChildScrollView(
@@ -20,6 +23,7 @@ class _SignupScreenState extends State<SignupScreen>{
                 Text("Đăng ký\nTài khoản",style: GoogleFonts.dosis(fontSize: 48,fontWeight: FontWeight.w600),),
                 SizedBox(height: 50,),
                 TextFormField(
+                  controller: _email,
                   decoration:  InputDecoration(
                       icon: Icon(Icons.email),
                       hintText: "Email",
@@ -36,6 +40,8 @@ class _SignupScreenState extends State<SignupScreen>{
                 ),
                 SizedBox(height: 5,),
                 TextFormField(
+                  obscureText: true,
+                  controller: _pass,
                   decoration:  InputDecoration(
                       icon: Icon(Icons.lock),
                       hintText: "Mật khẩu",
@@ -55,7 +61,8 @@ class _SignupScreenState extends State<SignupScreen>{
                   height: 50,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.black),
-                  child: TextButton(onPressed: (){
+                  child: TextButton(onPressed: ()async{
+                    authController.register(_email.text.trim(), _pass.text.trim());
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => EditPScreen()),

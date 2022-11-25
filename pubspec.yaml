@@ -40,6 +40,9 @@ dependencies:
   firebase_core: ^2.1.1
   firebase_auth: ^4.1.1
   get: ^4.6.5
+  motion_toast: ^2.5.4
+  fluttertoast: ^8.1.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

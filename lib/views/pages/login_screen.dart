@@ -1,8 +1,12 @@
 import 'package:comic_universe/views/pages/forgotpass_screen.dart';
 import 'package:comic_universe/views/widgets/bottom_navigation.dart';
 import 'package:comic_universe/views/pages/signup_screen.dart';
+import 'package:comic_universe/views/widgets/custom_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:motion_toast/motion_toast.dart';
+
+import '../../ultils/contrains.dart';
 
 class LoginScreen extends StatefulWidget{
   LoginScreen({Key? key}): super (key: key);
@@ -10,6 +14,8 @@ class LoginScreen extends StatefulWidget{
   _LoginScreenState createState() => _LoginScreenState();
 }
 class _LoginScreenState extends State<LoginScreen>{
+  TextEditingController _email = TextEditingController();
+  TextEditingController _pass = TextEditingController();
   Widget build(BuildContext context){
     return Scaffold(
        body: SingleChildScrollView(
@@ -22,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen>{
                Text("Đăng nhập\nTài khoản",style: GoogleFonts.dosis(fontSize: 48,fontWeight: FontWeight.w600),),
                SizedBox(height: 50,),
                TextFormField(
+                 controller: _email,
                  decoration:  InputDecoration(
                    icon: Icon(Icons.email),
                    hintText: "Email",
@@ -38,6 +45,7 @@ class _LoginScreenState extends State<LoginScreen>{
                  ),
                SizedBox(height: 5,),
                TextFormField(
+                 controller: _pass,
                  decoration:  InputDecoration(
                      icon: Icon(Icons.lock),
                      hintText: "Mật khẩu",
@@ -57,12 +65,12 @@ class _LoginScreenState extends State<LoginScreen>{
                  height: 50,
                  width: MediaQuery.of(context).size.width,
                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.black),
-                 child: TextButton(onPressed: (){
-                   Navigator.pushReplacement(
-                     context,
-                     MaterialPageRoute(builder: (context) => BottomNav()),
-                   );
-                 }, child: Text("Đăng nhập",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,color: Colors.white,fontSize: 18),),),
+                 child: TextButton(
+                     onPressed: () async {
+                       authController.login(_email.text.trim(),
+                           _pass.text.trim());
+                     },
+                 child: Text("Đăng nhập",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,color: Colors.white,fontSize: 18),),),
                ),
                SizedBox(height: 20,),
                Row(
@@ -70,6 +78,7 @@ class _LoginScreenState extends State<LoginScreen>{
                  crossAxisAlignment: CrossAxisAlignment.start,
                  children: [
                    TextButton(onPressed: (){
+
                      Navigator.pushReplacement(
                        context,
                        MaterialPageRoute(builder: (context) => ForgotScreen()),
