@@ -1,5 +1,5 @@
 import 'package:comic_universe/ultils/contrains.dart';
-import 'package:comic_universe/views/pages/editprofile_screen.dart';
+import 'package:comic_universe/views/pages/editname_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -62,12 +62,12 @@ class _SignupScreenState extends State<SignupScreen>{
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.black),
                   child: TextButton(onPressed: ()async{
-                    authController.register(_email.text.trim(), _pass.text.trim());
+
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => EditPScreen()),
+                      MaterialPageRoute(builder: (context) => EditPScreen(email: _email.text.trim(),pass: _pass.text.trim(),)),
                     );
-                  }, child: Text("Đăng ký",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,color: Colors.white,fontSize: 18),),),
+                  }, child: Text("Tiếp tục",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,color: Colors.white,fontSize: 18),),),
                 ),
               ],
             ),

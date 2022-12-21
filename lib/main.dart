@@ -8,9 +8,8 @@ import 'controllers/auth_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await firebaseInitialization.then((value) {
-    Get.put(AuthController());
-  });
+   await firebaseInitialization;
+  Get.put(AuthController());
   runApp(const MyApp());
 }
 

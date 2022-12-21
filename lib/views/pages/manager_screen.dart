@@ -1,5 +1,5 @@
-import 'package:comic_universe/views/pages/ranking/ranking_tab1.dart';
-import 'package:comic_universe/views/pages/ranking/ranking_tab2.dart';
+import 'package:comic_universe/views/pages/category_manager/category_manager.dart';
+import 'package:comic_universe/views/pages/comic_manager/list_comic_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,6 +25,7 @@ class _ManagerScreenState extends State<ManagerScreen> with SingleTickerProvider
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0.0,
         title: Text("Công cụ quản trị"),
+        centerTitle: true,
       ),
       body: Container(
         child: Column(
@@ -57,8 +58,8 @@ class _ManagerScreenState extends State<ManagerScreen> with SingleTickerProvider
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  TabScreen1(),
-                  TabScreen2(),
+                  ComicManager(),
+                  CateManager(),
                 ],
               ),
             ),

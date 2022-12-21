@@ -28,4 +28,15 @@ class CustomToast {
       fontSize: 16.0,
     );
   }
+  void showcautionToast() {
+    Fluttertoast.showToast(
+      msg: 'Thông báo: $msg',
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.yellow,
+      textColor: Colors.black,
+      fontSize: 16.0,
+    );
+  }
 }

@@ -46,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen>{
                SizedBox(height: 5,),
                TextFormField(
                  controller: _pass,
+                 obscureText: true,
                  decoration:  InputDecoration(
                      icon: Icon(Icons.lock),
                      hintText: "Mật khẩu",
@@ -79,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen>{
                  children: [
                    TextButton(onPressed: (){
 
-                     Navigator.pushReplacement(
+                     Navigator.push(
                        context,
                        MaterialPageRoute(builder: (context) => ForgotScreen()),
                      );

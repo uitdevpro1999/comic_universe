@@ -1,16 +1,25 @@
+import 'package:comic_universe/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../widgets/bottom_navigation.dart';
+import '../../../ultils/contrains.dart';
 
-class EditPScreen extends StatefulWidget{
-  EditPScreen({Key? key}) : super (key: key);
+class EditPrScreen extends StatefulWidget{
+  EditPrScreen({Key? key}) : super (key: key);
   @override
-  _EditPScreenState createState() => _EditPScreenState();
+  _EditPrScreenState createState() => _EditPrScreenState();
 }
-class _EditPScreenState extends State<EditPScreen>{
+class _EditPrScreenState extends State<EditPrScreen>{
+  UserController userController = Get.put(UserController());
+  TextEditingController _name =TextEditingController();
   Widget build(BuildContext context){
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent, elevation: 0.0,
+        title: Text("Chỉnh sửa hồ sơ"),
+        centerTitle: true,
+      ),
       body: Container(
         padding: const EdgeInsets.fromLTRB(22, 0, 22, 0),
         child:  SingleChildScrollView(
@@ -18,14 +27,11 @@ class _EditPScreenState extends State<EditPScreen>{
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                margin: EdgeInsets.only(top: 30),
-                child: Text("Chỉnh sửa hồ sơ",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
-              ),
               SizedBox(height: MediaQuery.of(context).size.height/3,),
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: TextFormField(
+                  controller: _name,
                   decoration:  InputDecoration(
                       icon: Icon(Icons.person_add_alt_outlined),
                       hintText: "Họ và Tên",
@@ -47,10 +53,7 @@ class _EditPScreenState extends State<EditPScreen>{
                 width: MediaQuery.of(context).size.width/2,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.black),
                 child: TextButton(onPressed: (){
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => BottomNav()),
-                  );
+                  userController.updateName(_name.text.trim());
                 }, child: Text("Xác nhận",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,color: Colors.white,fontSize: 18),),),
               ),
             ],

@@ -1,5 +1,4 @@
 import 'package:comic_universe/views/pages/category_screen.dart';
-import 'package:comic_universe/views/pages/follow_screen.dart';
 import 'package:comic_universe/views/pages/home_screen.dart';
 import 'package:comic_universe/views/pages/profile_screen.dart';
 import 'package:comic_universe/views/pages/ranking/ranking_screen.dart';
@@ -17,10 +16,8 @@ class _BottomNavState extends State<BottomNav> {
     HomeScreen(),
     RankingScreen(),
     CategloryScreen(),
-    FollowScreen(),
     ProfileScreen(),
   ];
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -46,10 +43,6 @@ class _BottomNavState extends State<BottomNav> {
           BottomNavigationBarItem(
             icon: Icon(Icons.category_outlined),
             label: 'Thể loại',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_outline),
-            label: 'Yêu thích',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),

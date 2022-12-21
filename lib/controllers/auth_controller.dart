@@ -1,15 +1,14 @@
 
-import 'package:flutter/material.dart';
 import 'package:comic_universe/views/pages/login_screen.dart';
 import 'package:comic_universe/views/widgets/bottom_navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:motion_toast/motion_toast.dart';
-
+import 'package:comic_universe/models/user_model.dart';
 import '../ultils/contrains.dart';
 import '../views/widgets/custom_toast.dart';
-
+import 'package:firebase_storage/firebase_storage.dart';
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
@@ -39,7 +38,7 @@ class AuthController extends GetxController {
 
     }
   }
-  void register(String email, password) async {
+  void register(String email, String password,String name) async {
     if(email=="" || password == "")
     {
       var toast = CustomToast(msg: "Bạn chưa nhập email hoặc nhật khẩu");
@@ -47,8 +46,10 @@ class AuthController extends GetxController {
     }
     else if(email != "" && password != ""){
       try {
-        await auth.createUserWithEmailAndPassword(
+        UserCredential cred = await auth.createUserWithEmailAndPassword(
             email: email, password: password);
+        UserModel user = UserModel(id: cred.user!.uid, profilename: name,email: email, imageurl: "https://firebasestorage.googleapis.com/v0/b/comic-universe-da8f4.appspot.com/o/User_icon_2.svg.png?alt=media&token=81df9c28-139c-4acc-a31a-c7728b80c039", role: "user");
+        await firebaseFirestore.collection('users').doc(cred.user!.uid).set(user.toJson());
         var toast = CustomToast(msg: "Đăng ký thành công");
         toast.showSuccessToast();
       } catch (firebaseAuthException) {
@@ -81,4 +82,15 @@ class AuthController extends GetxController {
     var toast = CustomToast(msg: "Đăng xuất thành công");
     toast.showSuccessToast();
   }
+  void resetpass(String email) async {
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+      var toast = CustomToast(msg: "Gửi email thành công, vui lòng kiểm tra hộp thư của bạn");
+      toast.showcautionToast();
+    }
+    catch(firebaseAuthExeption){
+      var toast = CustomToast(msg: "Gửi email thất bại, vui lòng kiểm tra lại");
+      toast.showErrorToast();
+    }
+}
 }

@@ -5,26 +5,32 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/comic_controller.dart';
-class ComicManager extends StatefulWidget{
-  ComicManager({Key? key})  : super (key: key);
+class ComicC extends StatefulWidget{
+  final cateid;
+  ComicC({Key? key, required this.cateid})  : super (key: key);
   @override
-  _ComicManagerState createState() => _ComicManagerState();
+  _ComicCState createState() => _ComicCState();
 }
-class _ComicManagerState extends State<ComicManager>{
+class _ComicCState extends State<ComicC>{
   ComicController comicController = Get.put(ComicController());
   @override
   void initState() {
-    comicController.getListComic();
+    comicController.getListComicfromCate(widget.cateid);
     super.initState();
   }
- @override
+  @override
   Widget build(BuildContext context){
     return Scaffold(
+      appBar: AppBar(
+      backgroundColor: Colors.transparent, elevation: 0.0,
+      title: Text("Danh sách truyện"),
+      centerTitle: true,
+    ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Obx(() {
-              if(comicController.listComic.isEmpty){
+              if(comicController.listComicCate.isEmpty){
                 return Column(
                   children: [
                     SizedBox(height: MediaQuery.of(context).size.height/2,),
@@ -39,11 +45,10 @@ class _ComicManagerState extends State<ComicManager>{
               }
               return ListView.builder(
                   shrinkWrap: true,
-                  itemCount: comicController.listComic.length,
+                  itemCount: comicController.listComicCate.length,
                   itemBuilder: (context, index){
                     return InkWell(
                       onTap: (){
-                        Get.to(ChapterManager(comicid: comicController.listComic[index].id));
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -59,7 +64,7 @@ class _ComicManagerState extends State<ComicManager>{
                               height: MediaQuery.of(context).size.height,
                               width: 118,
                               decoration: BoxDecoration(
-                                image: DecorationImage(image: NetworkImage(comicController.listComic[index].imageurl),fit: BoxFit.cover),
+                                image: DecorationImage(image: NetworkImage(comicController.listComicCate[index].imageurl),fit: BoxFit.cover),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                             ),
@@ -68,7 +73,7 @@ class _ComicManagerState extends State<ComicManager>{
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(comicController.listComic[index].name,style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
+                                Text(comicController.listComicCate[index].name,style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
                               ],
                             ),
                           ],
@@ -81,14 +86,6 @@ class _ComicManagerState extends State<ComicManager>{
             ),
           ],
         ),
-
-      ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            Get.to(AddComic());
-          },
-          backgroundColor: Colors.blueGrey,
-          child: Icon(Icons.add),
 
       ),
     );

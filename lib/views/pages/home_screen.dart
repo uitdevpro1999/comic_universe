@@ -1,5 +1,9 @@
+import 'package:comic_universe/controllers/user_controller.dart';
+import 'package:comic_universe/ultils/contrains.dart';
+import 'package:comic_universe/views/pages/comic_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget{
@@ -9,6 +13,13 @@ class HomeScreen extends StatefulWidget{
 }
 class _HomeScreenState extends State<HomeScreen>{
   String abc= 'hoàng hoa ký';
+ final UserController userController = Get.put(UserController());
+  @override
+  void initState() {
+    super.initState();
+    userController.getUserData();
+  }
+  @override
   Widget build(BuildContext context){
     return Scaffold(
       body: SingleChildScrollView(
@@ -16,27 +27,45 @@ class _HomeScreenState extends State<HomeScreen>{
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: EdgeInsets.only(top: 57,left: 23),
-              height: 110,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CircleAvatar( backgroundImage: NetworkImage("https://i.pinimg.com/736x/4a/f4/75/4af47542f3930fa8509dc5d84e5ccb9e.jpg"),),
-                  SizedBox(width: 10,),
-                  RichText(text: TextSpan(
-                    text: 'Chào mừng\n',
-                    style: GoogleFonts.dosis(textStyle: TextStyle(fontSize: 16, color: Colors.black)),
-                    children: <TextSpan>[
-                      TextSpan(text: 'Nguyen Van A', style: GoogleFonts.dosis(fontWeight:FontWeight.w600,fontSize: 24,color: Colors.black))
-                    ],
-                  ),
-                  ),
-                  SizedBox(width: 100,),
-                  IconButton(onPressed: (){}, icon: Icon(Icons.search,size: 30,)),
-                ],
-              ),
+            GetBuilder<UserController>(
+                init: UserController(),
+                builder: (controller){
+                  if(controller.user.isEmpty){
+                    return CircularProgressIndicator();
+                  }
+                  return Container(
+                    padding: EdgeInsets.only(top: 57,left: 23),
+                    height: 110,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 40, 0),
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 50,
+                                child:  CircleAvatar( backgroundImage: NetworkImage(controller.user['imageurl']),),
+                              ),
+                              SizedBox(width: 10,),
+                              RichText(text: TextSpan(
+                                text: 'Chào mừng\n',
+                                style: GoogleFonts.dosis(textStyle: TextStyle(fontSize: 16, color: Colors.black)),
+                                children: <TextSpan>[
+                                  TextSpan(text: controller.user['profilename'], style: GoogleFonts.dosis(fontWeight:FontWeight.w600,fontSize: 24,color: Colors.black))
+                                ],
+                              ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        IconButton(onPressed: (){}, icon: Icon(Icons.search,size: 30,)),
+                      ],
+                    ),
+                  );
+                },
             ),
              SizedBox(height: 30,),
              Row(
@@ -102,6 +131,9 @@ class _HomeScreenState extends State<HomeScreen>{
                              height: 30,
                              width: 160,
                              child: InkWell(
+                               onTap: (){
+                                 Get.to(ComicDetail());
+                               },
                                child: Text("Võ luyện đỉnh phong",style: GoogleFonts.dosis(color: Colors.white,fontSize: 20),),
                              ),
                            ),

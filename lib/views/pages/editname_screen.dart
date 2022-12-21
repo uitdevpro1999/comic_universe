@@ -1,17 +1,18 @@
-import 'package:comic_universe/ultils/contrains.dart';
-import 'package:comic_universe/views/pages/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../ultils/contrains.dart';
 import '../widgets/bottom_navigation.dart';
 
-class ForgotScreen extends StatefulWidget{
-  ForgotScreen({Key? key}) : super (key: key);
+class EditPScreen extends StatefulWidget{
+  String email;
+  String pass;
+  EditPScreen({Key? key, required this.email,required this.pass}) : super (key: key);
   @override
-  _ForgotScreenState createState() => _ForgotScreenState();
+  _EditPScreenState createState() => _EditPScreenState();
 }
-class _ForgotScreenState extends State<ForgotScreen>{
-  TextEditingController _email = TextEditingController();
+class _EditPScreenState extends State<EditPScreen>{
+  TextEditingController _name =TextEditingController();
   Widget build(BuildContext context){
     return Scaffold(
       body: Container(
@@ -23,16 +24,16 @@ class _ForgotScreenState extends State<ForgotScreen>{
             children: [
               Container(
                 margin: EdgeInsets.only(top: 30),
-                child: Text("Xác nhận Email",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
+                child: Text("Chỉnh sửa hồ sơ",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
               ),
               SizedBox(height: MediaQuery.of(context).size.height/3,),
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: TextFormField(
-                  controller: _email,
+                  controller: _name,
                   decoration:  InputDecoration(
-                      icon: Icon(Icons.email_outlined),
-                      hintText: "Email",
+                      icon: Icon(Icons.person_add_alt_outlined),
+                      hintText: "Họ và Tên",
                       hintStyle: GoogleFonts.dosis(fontSize: 16) ,
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(width: 3),
@@ -51,8 +52,7 @@ class _ForgotScreenState extends State<ForgotScreen>{
                 width: MediaQuery.of(context).size.width/2,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.black),
                 child: TextButton(onPressed: (){
-                  authController.resetpass(_email.text.trim());
-                  _email.clear();
+                  authController.register(widget.email, widget.pass, _name.text.trim());
                 }, child: Text("Xác nhận",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,color: Colors.white,fontSize: 18),),),
               ),
             ],
