@@ -15,11 +15,13 @@ class UserController extends GetxController{
  void getUserData() async{
     DocumentSnapshot userDoc =
     await firebaseFirestore.collection('users').doc(auth.currentUser?.uid).get();
+    String id = userDoc['id'];
     String profilename = userDoc['profilename'];
     String email = userDoc['email'];
     String role = userDoc['role'];
     String imageurl = userDoc['imageurl'];
      _user.value={
+       'id': id,
        'profilename': profilename,
        'email':email,
        'imageurl': imageurl,

@@ -26,7 +26,7 @@ class _CategloryScreenState extends State<CategloryScreen>{
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.only(top: 30),
+                margin: EdgeInsets.only(top: 40),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

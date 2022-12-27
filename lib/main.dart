@@ -8,8 +8,9 @@ import 'controllers/auth_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   await firebaseInitialization;
-  Get.put(AuthController());
+   firebaseInitialization.then((value){
+    Get.put(AuthController());
+  });
   runApp(const MyApp());
 }
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       // we don't really have to put the home page here
       // GetX is going to navigate the user and clear the navigation stack
-      home: const CircularProgressIndicator(),
+      home: const Center(child: CircularProgressIndicator(),),
     );
   }
 }

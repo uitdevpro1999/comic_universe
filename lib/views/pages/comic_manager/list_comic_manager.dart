@@ -79,7 +79,8 @@ class _ComicManagerState extends State<ComicManager>{
               );
             }
             ),
-          ],
+
+           ],
         ),
 
       ),

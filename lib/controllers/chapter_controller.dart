@@ -59,7 +59,6 @@ class ChapterController extends GetxController{
             .set(chapter.toJson());
         var toast = CustomToast(msg: "Thêm chapter thành công");
         toast.showSuccessToast();
-        getListChapter(comicid);
         Get.back();
       } else {
         var toast = CustomToast(msg: "Vui lòng điền đủ thông tin");

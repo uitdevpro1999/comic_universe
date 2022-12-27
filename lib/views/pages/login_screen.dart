@@ -25,8 +25,9 @@ class _LoginScreenState extends State<LoginScreen>{
              mainAxisAlignment: MainAxisAlignment.start,
              crossAxisAlignment: CrossAxisAlignment.start,
              children: [
+               SizedBox(height: MediaQuery.of(context).size.height/7),
                Text("Đăng nhập\nTài khoản",style: GoogleFonts.dosis(fontSize: 48,fontWeight: FontWeight.w600),),
-               SizedBox(height: 50,),
+               SizedBox(height:100,),
                TextFormField(
                  controller: _email,
                  decoration:  InputDecoration(
@@ -86,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen>{
                      );
                    }, child: Text("Quên mật khẩu",style: GoogleFonts.dosis(color: Colors.black),)),
                    TextButton(onPressed: (){
-                     Navigator.pushReplacement(
+                     Navigator.push(
                        context,
                        MaterialPageRoute(builder: (context) => SignupScreen()),
                      );

@@ -56,6 +56,30 @@ class ComicController extends GetxController{
     String downloadUrl = await snap.ref.getDownloadURL();
     return downloadUrl;
   }
+  void updateCmtCount(String type, String comicid, int commentcount) async{
+    if(type == "down"){
+      commentcount = (commentcount -1);
+      await firebaseFirestore.collection('comic').doc(comicid).update({'commentcount':commentcount});
+    }
+    else if(type == "up"){
+      commentcount = (commentcount +1);
+      await firebaseFirestore.collection('comic').doc(comicid).update({'commentcount':commentcount});
+    }
+  }
+  void updateLikeCount (String type, String comicid, int likecount) async{
+    if(type == "down"){
+      likecount = (likecount - 1);
+      await firebaseFirestore.collection('comic').doc(comicid).update({'likecount':likecount});
+    }
+    else if(type == "up"){
+      likecount = (likecount + 1);
+      await firebaseFirestore.collection('comic').doc(comicid).update({'likecount':likecount});
+    }
+  }
+  void updateViewCount(String comicid, int viewcount) async{
+    viewcount = (viewcount +1);
+    await firebaseFirestore.collection('comic').doc(comicid).update({'viewcount':viewcount});
+  }
   void createComic(File? image, String name, CategoriesModel cate, String plot, String characters, String author ) async{
     try{
       String cateid = cate.id;
@@ -72,7 +96,9 @@ class ComicController extends GetxController{
           author: author,
           characters: characters,
           imageurl: url,
-          viewcount: '0',
+          viewcount: 0,
+          likecount: 0,
+          commentcount: 0,
         );
         await firebaseFirestore
             .collection('comic')

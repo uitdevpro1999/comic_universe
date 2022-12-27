@@ -5,7 +5,9 @@ class ComicModel {
   String cateid;
   String name;
   String catename;
-  String viewcount;
+  int viewcount;
+  int likecount;
+  int commentcount;
   String plot;
   String author;
   String characters;
@@ -16,6 +18,8 @@ class ComicModel {
     required this.name,
     required this.catename,
     required this.viewcount,
+    required this.likecount,
+    required this.commentcount,
     required this.plot,
     required this.author,
     required this.characters,
@@ -30,6 +34,8 @@ class ComicModel {
       name: snapshot['name'],
       catename: snapshot['catename'],
       viewcount: snapshot['viewcount'],
+      likecount: snapshot['likecount'],
+      commentcount: snapshot['commentcount'],
       plot: snapshot['plot'],
       author: snapshot['author'],
       characters: snapshot['characters'],
@@ -42,6 +48,8 @@ class ComicModel {
     'name': name,
     'catename': catename,
     'viewcount': viewcount,
+    'likecount':likecount,
+    'commentcount': commentcount,
     'plot': plot,
     'author': author,
     'characters': characters,

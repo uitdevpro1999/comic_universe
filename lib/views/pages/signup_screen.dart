@@ -20,8 +20,9 @@ class _SignupScreenState extends State<SignupScreen>{
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: MediaQuery.of(context).size.height/7),
                 Text("Đăng ký\nTài khoản",style: GoogleFonts.dosis(fontSize: 48,fontWeight: FontWeight.w600),),
-                SizedBox(height: 50,),
+                SizedBox(height: 100),
                 TextFormField(
                   controller: _email,
                   decoration:  InputDecoration(

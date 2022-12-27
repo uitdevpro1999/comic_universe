@@ -1,3 +1,4 @@
+import 'package:comic_universe/views/detail/comic_detail_screen.dart';
 import 'package:comic_universe/views/pages/comic_manager/add_comic.dart';
 import 'package:comic_universe/views/pages/comic_manager/list_chapter.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,7 @@ class _ComicCState extends State<ComicC>{
                   itemBuilder: (context, index){
                     return InkWell(
                       onTap: (){
+                        Get.to(ComicDetail(id: comicController.listComicCate[index].id, name: comicController.listComicCate[index].name, plot: comicController.listComicCate[index].plot, author: comicController.listComicCate[index].author, image: comicController.listComicCate[index].imageurl, catename: comicController.listComicCate[index].catename, character: comicController.listComicCate[index].characters,commentcount:comicController.listComicCate[index].commentcount,viewcount: comicController.listComicCate[index].viewcount ,likecount:comicController.listComicCate[index].likecount ,));
                       },
                       child: Container(
                         decoration: BoxDecoration(

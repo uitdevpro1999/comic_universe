@@ -1,6 +1,6 @@
 import 'package:comic_universe/controllers/user_controller.dart';
 import 'package:comic_universe/ultils/contrains.dart';
-import 'package:comic_universe/views/pages/comic_detail_screen.dart';
+import 'package:comic_universe/views/detail/comic_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen>{
                crossAxisAlignment: CrossAxisAlignment.center,
                children: [
                  SizedBox(width: 15,),
-                 Text("Truyện top",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
+                 Text("Truyện được xem nhiều",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
                  SizedBox(width: 5,),
                  Image.asset("assets/images/crown.png",scale: 20,),
                ],
@@ -132,7 +132,6 @@ class _HomeScreenState extends State<HomeScreen>{
                              width: 160,
                              child: InkWell(
                                onTap: (){
-                                 Get.to(ComicDetail());
                                },
                                child: Text("Võ luyện đỉnh phong",style: GoogleFonts.dosis(color: Colors.white,fontSize: 20),),
                              ),
@@ -174,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen>{
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(width: 15,),
-                Text("Truyện hot",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
+                Text("Truyện được yêu thích",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
                 SizedBox(width: 5,),
                 Image.asset("assets/images/flame.png",scale: 20,),
               ],
@@ -262,7 +261,7 @@ class _HomeScreenState extends State<HomeScreen>{
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(width: 15,),
-                Text("Truyện mới",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
+                Text("Truyện được tương tác nhiều",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
                 SizedBox(width: 5,),
                 Image.asset("assets/images/thunder.png",scale:20,),
               ],
