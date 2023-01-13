@@ -1,7 +1,10 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:comic_universe/controllers/user_controller.dart';
 import 'package:comic_universe/ultils/contrains.dart';
+import 'package:comic_universe/views/pages/contact_us.dart';
 import 'package:comic_universe/views/pages/editprofile_screen.dart';
 import 'package:comic_universe/views/pages/manager_screen.dart';
+import 'package:comic_universe/views/widgets/custom_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -60,6 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen>{
             SizedBox(height: 30,),
             SingleChildScrollView(
                 child: ListView(
+                  scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   children: [
                     InkWell(
@@ -84,57 +88,74 @@ class _ProfileScreenState extends State<ProfileScreen>{
                       ),
                     ),
                     ),
-                    Container(
-                      height: 50,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.explore_outlined),
-                              SizedBox(width: 10,),
-                              Text("Chính sách bảo mật",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
-                            ],
-                          ),
-                          Icon(Icons.navigate_next_outlined),
-                        ],
+                    InkWell(
+                      onTap: (){
+                        var toast = CustomToast(msg: "Chúng tôi luôn bảo mật thông tin của bạn mọi lúc, mọi nơi ^_^");
+                        toast.showSuccessToast();
+                      },
+                      child: Container(
+                        height: 50,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.explore_outlined),
+                                SizedBox(width: 10,),
+                                Text("Chính sách bảo mật",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
+                              ],
+                            ),
+                            Icon(Icons.navigate_next_outlined),
+                          ],
+                        ),
                       ),
                     ),
-                    Container(
-                      height: 50,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.speaker_notes_outlined),
-                              SizedBox(width: 10,),
-                              Text("Đóng góp ý kiến",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
-                            ],
-                          ),
-                          Icon(Icons.navigate_next_outlined),
-                        ],
+                    InkWell(
+                       onTap: (){
+                         var toast = CustomToast(msg: "Vui lòng gửi email đến nqtrung1999@gmail.com");
+                         toast.showSuccessToast();
+                       },
+                      child: Container(
+                        height: 50,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.speaker_notes_outlined),
+                                SizedBox(width: 10,),
+                                Text("Đóng góp ý kiến",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
+                              ],
+                            ),
+                            Icon(Icons.navigate_next_outlined),
+                          ],
+                        ),
                       ),
                     ),
-                    Container(
-                      height: 50,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.info_outlined),
-                              SizedBox(width: 10,),
-                              Text("Thông tin về chúng tôi",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
-                            ],
-                          ),
-                          Icon(Icons.navigate_next_outlined),
-                        ],
-                      ),
-                    ),
+                   InkWell(
+                     onTap: (){
+                       Get.to(ContactScreen());
+                     },
+                     child:  Container(
+                       height: 50,
+                       child: Row(
+                         crossAxisAlignment: CrossAxisAlignment.start,
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: [
+                           Row(
+                             children: [
+                               Icon(Icons.info_outlined),
+                               SizedBox(width: 10,),
+                               Text("Thông tin về chúng tôi",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
+                             ],
+                           ),
+                           Icon(Icons.navigate_next_outlined),
+                         ],
+                       ),
+                     ),
+                   ),
                    userController.user['role'] == "admin" ?
                    Container(
                        height: 50,

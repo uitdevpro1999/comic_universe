@@ -1,6 +1,8 @@
+import 'package:comic_universe/controllers/comic_controller.dart';
 import 'package:comic_universe/controllers/user_controller.dart';
 import 'package:comic_universe/ultils/contrains.dart';
-import 'package:comic_universe/views/detail/comic_detail_screen.dart';
+import 'package:comic_universe/views/pages/detail/comic_detail_screen.dart';
+import 'package:comic_universe/views/pages/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -12,12 +14,15 @@ class HomeScreen extends StatefulWidget{
   _HomeScreenState createState() => _HomeScreenState();
 }
 class _HomeScreenState extends State<HomeScreen>{
-  String abc= 'hoàng hoa ký';
  final UserController userController = Get.put(UserController());
+ final ComicController comicController=Get.put(ComicController());
   @override
   void initState() {
     super.initState();
     userController.getUserData();
+    comicController.getListComicView();
+    comicController.getListComicLike();
+    comicController.getListComicCmt();
   }
   @override
   Widget build(BuildContext context){
@@ -42,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen>{
                       children: [
                         Container(
                           margin: EdgeInsets.fromLTRB(0, 0, 40, 0),
+                          width: MediaQuery.of(context).size.width/1.5,
                           child: Row(
                             children: [
                               Container(
@@ -50,18 +56,20 @@ class _HomeScreenState extends State<HomeScreen>{
                                 child:  CircleAvatar( backgroundImage: NetworkImage(controller.user['imageurl']),),
                               ),
                               SizedBox(width: 10,),
-                              RichText(text: TextSpan(
+                              Flexible(child: RichText(text: TextSpan(
                                 text: 'Chào mừng\n',
                                 style: GoogleFonts.dosis(textStyle: TextStyle(fontSize: 16, color: Colors.black)),
-                                children: <TextSpan>[
-                                  TextSpan(text: controller.user['profilename'], style: GoogleFonts.dosis(fontWeight:FontWeight.w600,fontSize: 24,color: Colors.black))
+                                children:[
+                                  TextSpan(text: controller.user['profilename'], style: GoogleFonts.dosis(fontWeight:FontWeight.w600,fontSize: 22,color: Colors.black),)
                                 ],
                               ),
-                              ),
+                              ),)
                             ],
                           ),
                         ),
-                        IconButton(onPressed: (){}, icon: Icon(Icons.search,size: 30,)),
+                        IconButton(onPressed: (){
+                          Get.to(SearchScreen());
+                        }, icon: Icon(Icons.search,size: 30,)),
                       ],
                     ),
                   );
@@ -78,94 +86,48 @@ class _HomeScreenState extends State<HomeScreen>{
                  Image.asset("assets/images/crown.png",scale: 20,),
                ],
              ),
+
             Container(
                padding: EdgeInsets.only(top: 10),
                height: 200,
-               child: ListView(
-                 physics: BouncingScrollPhysics(),
-                 shrinkWrap: true,
-                 scrollDirection: Axis.horizontal,
-                 children: [
-                   Row(
-                     children: [
-                       Container(
-                         margin: EdgeInsets.only(right: 5),
+               child: Obx((){
+                 if(comicController.listComicView.isEmpty){
+                   return Center(child: CircularProgressIndicator(),);
+                 }
+                 return ListView.builder(
+                   scrollDirection: Axis.horizontal,
+                   physics: BouncingScrollPhysics(),
+                   itemCount: comicController.listComicView.length > 4 ? 4 : comicController.listComicView.length,
+                   shrinkWrap: true,
+                   itemBuilder: (context, index){
+                     return InkWell(
+                       onTap: (){ Get.to(ComicDetail(id: comicController.listComicView[index].id));},
+                       child: Container(
                          width: 300.0,
+                         margin: EdgeInsets.only(right: 5),
                          decoration: BoxDecoration(
-                           image: DecorationImage(image: NetworkImage("https://thuvienanime.com/wp-content/uploads/2021/11/duong-khai-thuvienanime.jpeg"),fit: BoxFit.cover),
+                           image: DecorationImage(image: NetworkImage(comicController.listComicView[index].imageurl),fit: BoxFit.cover),
                            color: Colors.blue,
                            borderRadius: BorderRadius.circular(10),
                          ),
                          child: Stack(
                            children: [
                              Positioned(
-                                 top: 140,
-                                 child: Container(
-                                   color: Colors.black,
-                                   height: 30,
-                                   width: abc.length.toDouble()*9,
-                                   child: InkWell(
-                                     child: Text(abc,style: GoogleFonts.dosis(color: Colors.white,fontSize: 20),),
-                                   ),
-                                 ),
+                               top: 140,
+                               child: Container(
+                                 color: Colors.black,
+                                 height: 30,
+                                 width: MediaQuery.of(context).size.width,
+                                 child: Expanded(child: Text(comicController.listComicView[index].name,style: GoogleFonts.dosis(color: Colors.white,fontSize: 20),)),
+                               ),
                              ),
                            ],
                          ),
                        ),
-                     ],
-                   ),
-                   Container(
-                     width: 300.0,
-                     margin: EdgeInsets.only(right: 5),
-                     decoration: BoxDecoration(
-                       image: DecorationImage(image: NetworkImage("https://zingaudio.net/wp-content/uploads/2020/10/yeu-than-ky.jpg"),fit: BoxFit.cover),
-                       color: Colors.blue,
-                       borderRadius: BorderRadius.circular(10),
-                     ),
-                     child: Stack(
-                       children: [
-                         Positioned(
-                           top: 140,
-                           child: Container(
-                             color: Colors.black,
-                             height: 30,
-                             width: 160,
-                             child: InkWell(
-                               onTap: (){
-                               },
-                               child: Text("Võ luyện đỉnh phong",style: GoogleFonts.dosis(color: Colors.white,fontSize: 20),),
-                             ),
-                           ),
-                         ),
-                       ],
-                     ),
-                   ),
-                   Container(
-                     width: 300.0,
-                     margin: EdgeInsets.only(right: 5),
-                     decoration: BoxDecoration(
-                       image: DecorationImage(image: NetworkImage("https://zingaudio.net/wp-content/uploads/2020/10/yeu-than-ky.jpg"),fit: BoxFit.cover),
-                       color: Colors.blue,
-                       borderRadius: BorderRadius.circular(10),
-                     ),
-                     child: Stack(
-                       children: [
-                         Positioned(
-                           top: 140,
-                           child: Container(
-                             color: Colors.black,
-                             height: 30,
-                             width: 160,
-                             child: InkWell(
-                               child: Text("Võ luyện đỉnh phong",style: GoogleFonts.dosis(color: Colors.white,fontSize: 20),),
-                             ),
-                           ),
-                         ),
-                       ],
-                     ),
-                   ),
-                 ],
-               ),
+                     );
+                   },
+                 );
+               }),
              ),
             SizedBox(height: 20,),
             Row(
@@ -178,84 +140,41 @@ class _HomeScreenState extends State<HomeScreen>{
                 Image.asset("assets/images/flame.png",scale: 20,),
               ],
             ),
-            GridView.count(
-              shrinkWrap: true,
-              primary: false,
-              padding: const EdgeInsets.all(15),
-              crossAxisSpacing: 1,
-              mainAxisSpacing: 0,
-              crossAxisCount: 2,
-              children: <Widget>[
-                Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                    Container(
-                    height: 137,
-                    width: 184,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(image: NetworkImage("https://thuvienanime.com/wp-content/uploads/2021/11/duong-khai-thuvienanime.jpeg"),fit: BoxFit.cover),
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(5),
-                    ),),
-                      Text("Võ luyện đỉnh phong",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16),),
-                    ],
-                  )
-                ),
-                Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 137,
-                          width: 184,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(image: NetworkImage("https://thuvienanime.com/wp-content/uploads/2021/11/duong-khai-thuvienanime.jpeg"),fit: BoxFit.cover),
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(5),
-                          ),),
-                        Text("Võ luyện đỉnh phong",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16),),
-                      ],
-                    )
-                ),
-                Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 137,
-                          width: 184,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(image: NetworkImage("https://thuvienanime.com/wp-content/uploads/2021/11/duong-khai-thuvienanime.jpeg"),fit: BoxFit.cover),
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(5),
-                          ),),
-                        Text("Võ luyện đỉnh phong",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16),),
-                      ],
-                    )
-                ),
-                Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 137,
-                          width: 184,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(image: NetworkImage("https://thuvienanime.com/wp-content/uploads/2021/11/duong-khai-thuvienanime.jpeg"),fit: BoxFit.cover),
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(5),
-                          ),),
-                        Text("Võ luyện đỉnh phong",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16),),
-                      ],
-                    )
-                ),
-              ],
-            ),
+            Obx((){
+              if(comicController.listComicLike.isEmpty){
+                return Center(child: CircularProgressIndicator(),);
+              }
+              return GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 4,mainAxisSpacing: 0),
+                  itemCount: comicController.listComicLike.length > 4 ? 4 : comicController.listComicLike.length,
+                  shrinkWrap: true,
+                  primary: false,
+                  padding: const EdgeInsets.all(5),
+                  itemBuilder: (context, index){
+                    return InkWell(
+                      onTap: (){
+                        Get.to(ComicDetail(id: comicController.listComicLike[index].id));
+                      },
+                      child: Container(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 137,
+                                width: 205,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(image: NetworkImage(comicController.listComicLike[index].imageurl),fit: BoxFit.cover),
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(5),
+                                ),),
+                              Expanded(child: Text(comicController.listComicLike[index].name,style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16),)),
+                            ],
+                          )
+                      ),
+                    );
+                  }
+              );
+            }),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -266,84 +185,39 @@ class _HomeScreenState extends State<HomeScreen>{
                 Image.asset("assets/images/thunder.png",scale:20,),
               ],
             ),
-            GridView.count(
-              shrinkWrap: true,
-              primary: false,
-              padding: const EdgeInsets.all(15),
-              crossAxisSpacing: 1,
-              mainAxisSpacing: 0,
-              crossAxisCount: 2,
-              children: <Widget>[
-                Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 137,
-                          width: 184,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(image: NetworkImage("https://thuvienanime.com/wp-content/uploads/2021/11/duong-khai-thuvienanime.jpeg"),fit: BoxFit.cover),
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(5),
-                          ),),
-                        Text("Võ luyện đỉnh phong",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16),),
-                      ],
-                    )
-                ),
-                Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 137,
-                          width: 184,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(image: NetworkImage("https://thuvienanime.com/wp-content/uploads/2021/11/duong-khai-thuvienanime.jpeg"),fit: BoxFit.cover),
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(5),
-                          ),),
-                        Text("Võ luyện đỉnh phong",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16),),
-                      ],
-                    )
-                ),
-                Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 137,
-                          width: 184,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(image: NetworkImage("https://thuvienanime.com/wp-content/uploads/2021/11/duong-khai-thuvienanime.jpeg"),fit: BoxFit.cover),
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(5),
-                          ),),
-                        Text("Võ luyện đỉnh phong",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16),),
-                      ],
-                    )
-                ),
-                Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 137,
-                          width: 184,
-                          decoration: BoxDecoration(
-                            image:  DecorationImage(image: NetworkImage("https://thuvienanime.com/wp-content/uploads/2021/11/duong-khai-thuvienanime.jpeg"),fit: BoxFit.cover),
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(5),
-                          ),),
-                        Text("Võ luyện đỉnh phong",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16),),
-                      ],
-                    )
-                ),
-              ],
-            ),
+            Obx((){
+              if(comicController.listComicCmt.isEmpty){
+                return Center(child: CircularProgressIndicator(),);
+              }
+              return GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 4,mainAxisSpacing: 0),
+                  itemCount: comicController.listComicCmt.length > 4 ? 4 : comicController.listComicCmt.length,
+                  shrinkWrap: true,
+                  primary: false,
+                  padding: const EdgeInsets.all(5),
+                  itemBuilder: (context, index){
+                    return InkWell(
+                      onTap: (){Get.to(ComicDetail(id: comicController.listComicCmt[index].id));},
+                      child: Container(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 137,
+                                width: 205,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(image: NetworkImage(comicController.listComicCmt[index].imageurl),fit: BoxFit.cover),
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(5),
+                                ),),
+                              Text(comicController.listComicCmt[index].name,style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16),),
+                            ],
+                          )
+                      ),
+                    );
+                  }
+              );
+            }),
           ],
 
         ),

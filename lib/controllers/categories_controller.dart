@@ -45,6 +45,11 @@ class CategoryController extends GetxController{
     String downloadUrl = await snap.ref.getDownloadURL();
     return downloadUrl;
   }
+  void deleteCate(String id) async{
+    await firebaseFirestore
+        .collection('categories')
+        .doc(id).delete();
+  }
   void createCate(File? image, String name) async{
     try{
       if(image != null && name != ""){

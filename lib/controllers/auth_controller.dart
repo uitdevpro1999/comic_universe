@@ -20,9 +20,8 @@ class AuthController extends GetxController {
     // Since we have to use that many times I just made a constant file and declared there
 
     firebaseUser = Rx<User?>(auth.currentUser);
-
-    firebaseUser.bindStream(auth.userChanges());
     ever(firebaseUser, _setInitialScreen);
+    firebaseUser.bindStream(auth.userChanges());
   }
 
   _setInitialScreen(User? user) {

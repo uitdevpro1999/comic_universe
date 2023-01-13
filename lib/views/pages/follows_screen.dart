@@ -1,67 +1,63 @@
-import 'package:comic_universe/controllers/like_controller.dart';
 import 'package:comic_universe/controllers/user_controller.dart';
-import 'package:comic_universe/views/pages/comic_manager/add_comic.dart';
-import 'package:comic_universe/views/pages/comic_manager/list_chapter.dart';
+import 'package:comic_universe/views/pages/detail/comic_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:get/get.dart';
 
-import '../../../controllers/comic_controller.dart';
-import 'detail/comic_detail_screen.dart';
-class ComicC extends StatefulWidget{
-  final cateid;
-  ComicC({Key? key, required this.cateid})  : super (key: key);
+import '../../controllers/follow_controller.dart';
+import 'package:get/get.dart';
+class FollowSreen extends StatefulWidget{
+  FollowSreen({Key? key}): super (key: key);
   @override
-  _ComicCState createState() => _ComicCState();
+  _FollowScreenState createState() => _FollowScreenState();
 }
-class _ComicCState extends State<ComicC>{
-  ComicController comicController = Get.put(ComicController());
-  LikeController likeController = Get.put(LikeController());
-  UserController userController = Get.put(UserController());
+class _FollowScreenState extends State<FollowSreen>{
+  @override
+  FollowController followController =Get.put(FollowController());
+  UserController userController= Get.put(UserController());
   @override
   void initState() {
-    comicController.getListComicfromCate(widget.cateid);
+    followController.getListFollow(userController.user['id']);
     super.initState();
   }
-  @override
   Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-      backgroundColor: Colors.transparent, elevation: 0.0,
-      title: Text("Danh sách truyện"),
-      centerTitle: true,
-    ),
+    return  Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(
+              margin: EdgeInsets.only(top: 40),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Theo dõi",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
+                ],
+              ),
+            ),
             Obx(() {
-              if(comicController.listComicCate.isEmpty){
+              if(followController.listFollow.isEmpty){
                 return Column(
                   children: [
                     SizedBox(height: MediaQuery.of(context).size.height/2,),
-                    Row(
-                      children: [
-                        SizedBox(width: MediaQuery.of(context).size.width/3.6,),
-                        Text("Chưa có truyện nào",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
-                      ],
-                    )
+                    Text("Bạn chưa theo dõi truyện nào",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
                   ],
                 );
               }
               return ListView.builder(
                   shrinkWrap: true,
-                  itemCount: comicController.listComicCate.length,
+                  itemCount: followController.listFollow.length,
                   itemBuilder: (context, index){
                     return InkWell(
                       onTap: (){
-                        Get.to(ComicDetail(id: comicController.listComicCate[index].id));
+                       Get.to(ComicDetail(id: followController.listFollow[index].comicid));
                       },
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                         ),
                         margin: EdgeInsets.only(left: 5,bottom: 5),
-                        height: 75,
+                        height: 83,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -70,7 +66,7 @@ class _ComicCState extends State<ComicC>{
                               height: MediaQuery.of(context).size.height,
                               width: 118,
                               decoration: BoxDecoration(
-                                image: DecorationImage(image: NetworkImage(comicController.listComicCate[index].imageurl),fit: BoxFit.cover),
+                                image: DecorationImage(image: NetworkImage(followController.listFollow[index].imageurl),fit: BoxFit.cover),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                             ),
@@ -79,7 +75,7 @@ class _ComicCState extends State<ComicC>{
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(comicController.listComicCate[index].name,style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
+                                Text(followController.listFollow[index].comicname,style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
                               ],
                             ),
                           ],
@@ -92,7 +88,6 @@ class _ComicCState extends State<ComicC>{
             ),
           ],
         ),
-
       ),
     );
   }

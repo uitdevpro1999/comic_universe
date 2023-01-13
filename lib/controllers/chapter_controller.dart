@@ -70,4 +70,46 @@ class ChapterController extends GetxController{
       toast.showErrorToast();
     }
   }
+  void createChapterG(String comicid, String name, String link) async
+  {
+    try{
+      if(link != "" && name != ""){
+        String id = uuid.v4();
+        String url = link;
+        ChapterModel chapter = ChapterModel(
+          id: id,
+          comicid: comicid,
+          chapterurl: url,
+          chaptername: name,
+        );
+        await firebaseFirestore
+            .collection('comic')
+            .doc(comicid).collection('chapter').doc(id)
+            .set(chapter.toJson());
+        var toast = CustomToast(msg: "Thêm chapter thành công");
+        toast.showSuccessToast();
+        Get.back();
+      } else {
+        var toast = CustomToast(msg: "Vui lòng điền đủ thông tin");
+        toast.showcautionToast();
+      }
+    }
+    catch(e){
+      var toast = CustomToast(msg: "Thêm thất bại");
+      toast.showErrorToast();
+    }
+  }
+  void deleteChapter(String comicid, String id) async{
+   try{
+     await firebaseFirestore
+         .collection('comic')
+         .doc(comicid).collection('chapter').doc(id).delete();
+     var toast = CustomToast(msg: "Xoá thành công");
+     toast.showSuccessToast();
+   }
+   catch(e){
+     var toast = CustomToast(msg: "Xoá thất bại");
+     toast.showErrorToast();
+   }
+  }
 }

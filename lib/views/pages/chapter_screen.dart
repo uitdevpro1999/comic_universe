@@ -6,9 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../controllers/chapter_controller.dart';
 import 'package:get/get.dart';
 class ChapterScreen extends StatefulWidget{
-  final comicid;
-  int viewcount;
-  ChapterScreen({Key? key, required this.comicid,required this.viewcount})  : super (key: key);
+  ChapterScreen({Key? key})  : super (key: key);
   @override
   _ChapterScreenState createState() => _ChapterScreenState();
 }
@@ -17,14 +15,14 @@ class _ChapterScreenState extends State<ChapterScreen>{
   ComicController comicController =Get.put(ComicController());
   @override
   void initState() {
-    chapterController.getListChapter(widget.comicid);
+    chapterController.getListChapter(comicController.comic['id']);
     super.initState();
   }
   @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar:AppBar(
-        backgroundColor: Colors.transparent, elevation: 0.0,
+        backgroundColor: Colors.white, elevation: 0.0,
         title: Text("Danh sách chapter"),
         centerTitle: true,
       ),
@@ -51,12 +49,14 @@ class _ChapterScreenState extends State<ChapterScreen>{
                   itemBuilder: (context, index){
                     return
                       Container(
-                        height: 60,
+                        height: 75,
                         width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.only(left: 5,bottom: 5,right: 5),
                         child: Card(
+                          color: Colors.grey,
                           child: InkWell(
                             onTap: (){
-                              comicController.updateViewCount(widget.comicid, widget.viewcount);
+                              comicController.updateViewCount(comicController.comic['id']);
                               Get.to(View(name:chapterController.listChapter[index].chaptername, chapterurl:chapterController.listChapter[index].chapterurl ));
                             },
                             child: Column(

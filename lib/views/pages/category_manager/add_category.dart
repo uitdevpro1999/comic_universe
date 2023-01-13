@@ -84,6 +84,7 @@ class _AddCateState extends State<AddCate>{
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: TextFormField(
+                  style: GoogleFonts.dosis(),
                   controller: _name,
                   decoration:  InputDecoration(
                       icon: Icon(Icons.category_outlined),

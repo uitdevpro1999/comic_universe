@@ -9,7 +9,7 @@ class FollowController extends GetxController{
   List<FollowModel> get listFollow => _listFollow.value;
   void getListFollow(String userid) {
     _listFollow.bindStream(
-      firebaseFirestore.collection('user').doc(userid).collection('follow').snapshots().map((QuerySnapshot query) {
+      firebaseFirestore.collection('users').doc(userid).collection('follow').snapshots().map((QuerySnapshot query) {
         List<FollowModel> retValue = [];
         for (var element in query.docs) {
           retValue.add(FollowModel.fromSnap(element));
@@ -19,7 +19,7 @@ class FollowController extends GetxController{
       ),
     );
   }
-  void createFollow(String comicid, String userid, String comicname, String imageurl,int viewcount,int likecount,int commentcount) async
+  void createFollow(String comicid, String userid, String comicname, String imageurl) async
   {
     try{
         String id = comicid;
@@ -29,9 +29,7 @@ class FollowController extends GetxController{
           userid: userid,
           comicname: comicname,
           imageurl: imageurl,
-          viewcount: viewcount,
-          likecount: likecount,
-          commentcount: commentcount,
+
         );
         await firebaseFirestore
             .collection('users')

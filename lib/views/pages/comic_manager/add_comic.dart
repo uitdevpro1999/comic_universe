@@ -168,6 +168,7 @@ class AddComic extends StatefulWidget{
                 Container(
                   width: MediaQuery.of(context).size.width,
                   child: TextFormField(
+                    style: GoogleFonts.dosis(),
                     controller: name,
                     decoration:  InputDecoration(
                         icon: Icon(Icons.edit_outlined),
@@ -188,6 +189,7 @@ class AddComic extends StatefulWidget{
                 Container(
                   width: MediaQuery.of(context).size.width,
                   child: TextFormField(
+                    style: GoogleFonts.dosis(),
                     controller: author,
                     decoration:  InputDecoration(
                         icon: Icon(Icons.person_outline),
@@ -208,6 +210,7 @@ class AddComic extends StatefulWidget{
                 Container(
                   width: MediaQuery.of(context).size.width,
                   child: TextFormField(
+                    style: GoogleFonts.dosis(),
                     controller: characters,
                     decoration:  InputDecoration(
                         icon: Icon(Icons.person_add_alt_outlined),
@@ -228,6 +231,7 @@ class AddComic extends StatefulWidget{
                 Container(
                   width: MediaQuery.of(context).size.width,
                   child: TextFormField(
+                    style: GoogleFonts.dosis(),
                     controller: plot,
                     decoration:  InputDecoration(
                         icon: Icon(Icons.book_online_outlined),

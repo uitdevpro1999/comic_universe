@@ -13,6 +13,17 @@ class EditPrScreen extends StatefulWidget{
 class _EditPrScreenState extends State<EditPrScreen>{
   UserController userController = Get.put(UserController());
   TextEditingController _name =TextEditingController();
+  @override
+  void initState() {
+    _name.text = userController.user['profilename'];
+    // TODO: implement initState
+    super.initState();
+  }
+  void dispose(){
+    _name.clear();
+    super.dispose();
+
+  }
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
@@ -31,6 +42,7 @@ class _EditPrScreenState extends State<EditPrScreen>{
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: TextFormField(
+                  style: GoogleFonts.dosis(),
                   controller: _name,
                   decoration:  InputDecoration(
                       icon: Icon(Icons.person_add_alt_outlined),

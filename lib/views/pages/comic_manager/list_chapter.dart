@@ -1,5 +1,6 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:comic_universe/views/pages/comic_manager/add_chapter.dart';
-import 'package:comic_universe/views/pages/comic_manager/add_comic.dart';
+import 'package:comic_universe/views/pages/comic_manager/add_chapter_google.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,7 @@ class _ChapterManagerState extends State<ChapterManager>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar:AppBar(
         backgroundColor: Colors.transparent, elevation: 0.0,
         title: Text("Quản lý chapter"),
@@ -47,14 +49,30 @@ class _ChapterManagerState extends State<ChapterManager>{
                   shrinkWrap: true,
                   itemCount: chapterController.listChapter.length,
                   itemBuilder: (context, index){
-                    return Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
+                    return InkWell(
+                      onLongPress: () => AwesomeDialog(
+                          context: context,
+                          dialogType: DialogType.warning,
+                          animType: AnimType.rightSlide,
+                          title: 'Cảnh báo',
+                          desc: 'Bạn chắc chắn muốn xoá chứ ?',
+                          btnCancelOnPress: (){},
+                          btnOkOnPress: () {
+                            chapterController.deleteChapter(chapterController.listChapter[index].comicid, chapterController.listChapter[index].id);
+                          },
+                        )..show(),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        margin: EdgeInsets.only(left: 5,bottom: 5,right: 5),
+                        height: 75,
+                        child:
+                          Card(
+                            color: Colors.grey,
+                            child: Center(child: Text(chapterController.listChapter[index].chaptername,style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),)
+                          )
                       ),
-                      margin: EdgeInsets.only(left: 5,bottom: 5),
-                      height: 75,
-                      child:
-                              Text(chapterController.listChapter[index].chaptername,style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
                     );
                   }
               );
@@ -64,13 +82,22 @@ class _ChapterManagerState extends State<ChapterManager>{
         ),
 
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Get.to(AddChapter(comicid: widget.comicid));
-        },
-        backgroundColor: Colors.blueGrey,
-        child: Icon(Icons.add),
-
+      floatingActionButton:  Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+         FloatingActionButton(
+                onPressed: () {
+                  Get.to(AddChapter(comicid: widget.comicid));
+                },
+                child: Icon(Icons.add),
+              ),
+         SizedBox(height: 5,),
+         FloatingActionButton(
+                onPressed: () { Get.to(AddChapterG(comicid: widget.comicid)); },
+                child: Icon(Icons.link_outlined),
+              ),
+        ],
       ),
     );
   }

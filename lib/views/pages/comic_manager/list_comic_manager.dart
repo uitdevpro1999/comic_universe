@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:comic_universe/views/pages/comic_manager/add_comic.dart';
 import 'package:comic_universe/views/pages/comic_manager/list_chapter.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,17 @@ class _ComicManagerState extends State<ComicManager>{
                   itemCount: comicController.listComic.length,
                   itemBuilder: (context, index){
                     return InkWell(
+                      onLongPress:  ()=>AwesomeDialog(
+                        context: context,
+                        dialogType: DialogType.warning,
+                        animType: AnimType.rightSlide,
+                        title: 'Cảnh báo',
+                        desc: 'Bạn chắc chắn muốn xoá chứ ?',
+                        btnCancelOnPress: (){},
+                        btnOkOnPress: () {
+                          comicController.deleteComic(comicController.listComic[index].id);
+                        },
+                      )..show(),
                       onTap: (){
                         Get.to(ChapterManager(comicid: comicController.listComic[index].id));
                       },

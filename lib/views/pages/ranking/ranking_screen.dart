@@ -1,4 +1,6 @@
 
+import 'package:comic_universe/views/pages/ranking/ranking_tab_like.dart';
+import 'package:comic_universe/views/pages/ranking/ranking_tab_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,6 +10,18 @@ class RankingScreen extends StatefulWidget{
   _RankingScreenState createState() => _RankingScreenState();
 }
 class _RankingScreenState extends State<RankingScreen> with SingleTickerProviderStateMixin{
+  late TabController _tabController;
+  @override
+  void initState() {
+    _tabController = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
+  }
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -43,73 +57,38 @@ class _RankingScreenState extends State<RankingScreen> with SingleTickerProvider
                         ),
                       ),
                     ),
-                ListView(
-                  shrinkWrap: true,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      margin: EdgeInsets.only(left: 5,bottom: 5),
-                      height: 75,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height,
-                            width: 118,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(image: NetworkImage("https://hoathinh3d.com/wp-content/uploads/2021/12/kiem-vuc-phong-van-1015.jpg"),fit: BoxFit.cover),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
-                          SizedBox(width: 20,),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text("Kiếm Vực Phong Vân",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
-                              SizedBox(height: 10,),
-                              Text("Lượt xem: 7000",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16),),
-                            ],
-                          ),
-                        ],
-                      ),
+              Container(
+                height: 30,
+                child: TabBar(
+                  controller: _tabController,
+                  indicator: const UnderlineTabIndicator(
+                      borderSide: BorderSide(width: 2.0 ,color: Colors.red),
+                      insets: EdgeInsets.symmetric(horizontal:60.0)
+                  ),
+                  labelColor: Colors.red,
+                  unselectedLabelColor: Colors.black,
+                  unselectedLabelStyle: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 20),
+                  labelStyle: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 20),
+                  tabs: const [
+                    Tab(
+                      text:'Lượt xem',
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      margin: EdgeInsets.only(left: 5,bottom: 5),
-                      height: 75,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height,
-                            width: 118,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(image: NetworkImage("https://hoathinh3d.com/wp-content/uploads/2021/12/kiem-vuc-phong-van-1015.jpg"),fit: BoxFit.cover),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
-                          SizedBox(width: 20,),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text("Kiếm Vực Phong Vân",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
-                              SizedBox(height: 10,),
-                              Text("Lượt xem: 7000",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16),),
-                            ],
-                          ),
-                        ],
-                      ),
+                    Tab(
+                      text: 'Lượt thích',
                     ),
                   ],
                 ),
+              ),
+              const SizedBox(height: 10,),// tab bar view here
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    RankingView(),
+                    RankingLike(),
+                  ],
+                ),
+              ),
       ],
     ),
         ),

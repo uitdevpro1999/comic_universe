@@ -18,9 +18,9 @@ class _ViewState extends State<View> {
         title: Text(widget.name),
       ),
       body: Container(
-          child: PDF().cachedFromUrl(
+          child: const PDF(swipeHorizontal: true).cachedFromUrl(
             widget.chapterurl,
-            maxAgeCacheObject:Duration(minutes: 1), //duration of cache
+            maxAgeCacheObject:Duration(hours: 5), //duration of cache
             placeholder: (progress) => Center(child: Text('Đang tải $progress %',style: GoogleFonts.dosis(fontSize: 24),)),
             errorWidget: (error) => Center(child: Text(error.toString())),
           )

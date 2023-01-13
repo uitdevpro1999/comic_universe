@@ -3,15 +3,16 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:io';
 import '../../../controllers/chapter_controller.dart';
-class AddChapter extends StatefulWidget{
+class AddChapterG extends StatefulWidget{
   final comicid;
-  AddChapter({Key? key, required final this.comicid}): super(key: key);
-  @override
-  _AddChapterState createState() => _AddChapterState();
+  AddChapterG({Key? key, required final this.comicid}): super(key: key);
+@override
+_AddChapterGState createState() => _AddChapterGState();
 }
-class _AddChapterState extends State<AddChapter>{
+class _AddChapterGState extends State<AddChapterG>{
   ChapterController chapterController = Get.put(ChapterController());
   TextEditingController _name =TextEditingController();
+  TextEditingController _link =TextEditingController();
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -27,43 +28,27 @@ class _AddChapterState extends State<AddChapter>{
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GetBuilder<ChapterController>(
-                  init: ChapterController(),
-                  builder: (controller) {
-                    if (controller.chapterFile?.value.path==null){
-                      return Row(
-                        children: [
-                      Container(
-                      margin: const EdgeInsets.only(top: 50,left: 100,right: 100,bottom: 20),
-                          height: 50,
-                            width: 100,
-                           child: Text("Chưa có file")),
-                          IconButton(
-                            icon: Icon(Icons.border_color_outlined,color: Colors.black,size: 20,),
-                            onPressed: (){
-                              chapterController.pickFile();
-                            },
-                          ),
-                        ],
-                      );}
-                    return
-                     Row(
-                       children: [
-                      Container(
-                        margin: const EdgeInsets.only(top: 50,left: 100,right: 100,bottom: 20),
-                        height: 50,
-                        width: 100,
-                        child: Text(controller.chapterFile?.value.path as String)),
-                         IconButton(
-                           icon: Icon(Icons.border_color_outlined,color: Colors.black,size: 20,),
-                           onPressed: (){
-                             chapterController.pickFile();
-                           },
-                         ),
-                       ],
-                     );
-                  }
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: TextFormField(
+                  style: GoogleFonts.dosis(),
+                  controller: _link,
+                  decoration:  InputDecoration(
+                      icon: Icon(Icons.link_outlined),
+                      hintText: "ID Google Chapter",
+                      hintStyle: GoogleFonts.dosis(fontSize: 16) ,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(width: 3),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(width: 3),
+                        borderRadius: BorderRadius.circular(15),
+                      )
+                  ),
+                ),
               ),
+              SizedBox(height: 10,),
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: TextFormField(
@@ -90,7 +75,7 @@ class _AddChapterState extends State<AddChapter>{
                 width: MediaQuery.of(context).size.width/2,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.black),
                 child: TextButton(onPressed: (){
-                  chapterController.createChapter(widget.comicid, _name.text, chapterController.chapterFile?.value as File);
+                  chapterController.createChapterG(widget.comicid, _name.text, "https://drive.google.com/uc?export=view&id="+_link.text);
                 }, child: Text("Xác nhận",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,color: Colors.white,fontSize: 18),),),
               ),
             ],
