@@ -51,11 +51,15 @@ class _ChapterManagerState extends State<ChapterManager>{
                   itemBuilder: (context, index){
                     return InkWell(
                       onLongPress: () => AwesomeDialog(
+                        titleTextStyle: GoogleFonts.dosis(fontWeight: FontWeight.w600),
+                          descTextStyle: GoogleFonts.dosis(),
                           context: context,
                           dialogType: DialogType.warning,
                           animType: AnimType.rightSlide,
                           title: 'Cảnh báo',
                           desc: 'Bạn chắc chắn muốn xoá chứ ?',
+                          btnCancelText: "Quay lại",
+                          btnOkText: "Xác nhận",
                           btnCancelOnPress: (){},
                           btnOkOnPress: () {
                             chapterController.deleteChapter(chapterController.listChapter[index].comicid, chapterController.listChapter[index].id);

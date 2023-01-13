@@ -49,6 +49,10 @@ class _ComicManagerState extends State<ComicManager>{
                         animType: AnimType.rightSlide,
                         title: 'Cảnh báo',
                         desc: 'Bạn chắc chắn muốn xoá chứ ?',
+                        btnCancelText: "Quay lại",
+                        btnOkText: "Xác nhận",
+                        titleTextStyle: GoogleFonts.dosis(fontWeight: FontWeight.w600),
+                        descTextStyle: GoogleFonts.dosis(),
                         btnCancelOnPress: (){},
                         btnOkOnPress: () {
                           comicController.deleteComic(comicController.listComic[index].id);
