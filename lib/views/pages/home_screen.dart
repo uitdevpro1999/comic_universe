@@ -2,6 +2,7 @@ import 'package:comic_universe/controllers/comic_controller.dart';
 import 'package:comic_universe/controllers/user_controller.dart';
 import 'package:comic_universe/ultils/contrains.dart';
 import 'package:comic_universe/views/pages/detail/comic_detail_screen.dart';
+import 'package:comic_universe/views/pages/list_comic.dart';
 import 'package:comic_universe/views/pages/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -218,6 +219,9 @@ class _HomeScreenState extends State<HomeScreen>{
                   }
               );
             }),
+            Center(child: TextButton(onPressed: (){
+              Get.to(Comic());
+            }, child: Text("Xem tất cả",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 20,color: Colors.black),))),
           ],
 
         ),

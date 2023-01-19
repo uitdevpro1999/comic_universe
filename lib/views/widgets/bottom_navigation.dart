@@ -54,7 +54,7 @@ class _BottomNavState extends State<BottomNav> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
-            label: 'Hồ sơ',
+            label: 'Cá nhân',
           ),
         ],
         currentIndex: _selectedIndex,
