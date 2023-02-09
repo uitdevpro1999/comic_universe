@@ -36,8 +36,7 @@ class _RankingScreenState extends State<RankingScreen> with SingleTickerProvider
                   color: Colors.blue,
                 ),
                 child:
-                    Positioned(
-                      child: Align(
+                    Align(
                         alignment: FractionalOffset.bottomCenter,
                         child:  Column(
                           children: [
@@ -55,7 +54,6 @@ class _RankingScreenState extends State<RankingScreen> with SingleTickerProvider
                           ],
                         ),
                         ),
-                      ),
                     ),
               Container(
                 height: 30,

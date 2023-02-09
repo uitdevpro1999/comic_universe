@@ -65,6 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen>{
                 child: ListView(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
+                  padding: EdgeInsets.only(left: 5, right: 5,top:10),
                   children: [
                     InkWell(
                     onTap: (){
@@ -72,20 +73,22 @@ class _ProfileScreenState extends State<ProfileScreen>{
                     },
                     child: Container(
                       height: 50,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.person_outline),
-                              SizedBox(width: 10,),
-                              Text("Chỉnh sửa thông tin",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
-                            ],
-                          ),
-                          Icon(Icons.navigate_next_outlined),
-                        ],
-                      ),
+                      child: Center(
+                        child:  Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.person_outline),
+                                SizedBox(width: 10,),
+                                Text("Chỉnh sửa thông tin",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
+                              ],
+                            ),
+                            Icon(Icons.navigate_next_outlined),
+                          ],
+                        ),
+                      )
                     ),
                     ),
                     InkWell(
@@ -95,19 +98,21 @@ class _ProfileScreenState extends State<ProfileScreen>{
                       },
                       child: Container(
                         height: 50,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(Icons.explore_outlined),
-                                SizedBox(width: 10,),
-                                Text("Chính sách bảo mật",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
-                              ],
-                            ),
-                            Icon(Icons.navigate_next_outlined),
-                          ],
+                        child: Center(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(Icons.explore_outlined),
+                                  SizedBox(width: 10,),
+                                  Text("Chính sách bảo mật",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
+                                ],
+                              ),
+                              Icon(Icons.navigate_next_outlined),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -118,19 +123,21 @@ class _ProfileScreenState extends State<ProfileScreen>{
                        },
                       child: Container(
                         height: 50,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(Icons.speaker_notes_outlined),
-                                SizedBox(width: 10,),
-                                Text("Đóng góp ý kiến",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
-                              ],
-                            ),
-                            Icon(Icons.navigate_next_outlined),
-                          ],
+                        child: Center(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(Icons.speaker_notes_outlined),
+                                  SizedBox(width: 10,),
+                                  Text("Đóng góp ý kiến",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
+                                ],
+                              ),
+                              Icon(Icons.navigate_next_outlined),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -140,19 +147,21 @@ class _ProfileScreenState extends State<ProfileScreen>{
                      },
                      child:  Container(
                        height: 50,
-                       child: Row(
-                         crossAxisAlignment: CrossAxisAlignment.start,
-                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         children: [
-                           Row(
-                             children: [
-                               Icon(Icons.info_outlined),
-                               SizedBox(width: 10,),
-                               Text("Thông tin về chúng tôi",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
-                             ],
-                           ),
-                           Icon(Icons.navigate_next_outlined),
-                         ],
+                       child: Center(
+                         child: Row(
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                           children: [
+                             Row(
+                               children: [
+                                 Icon(Icons.info_outlined),
+                                 SizedBox(width: 10,),
+                                 Text("Thông tin về chúng tôi",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
+                               ],
+                             ),
+                             Icon(Icons.navigate_next_outlined),
+                           ],
+                         ),
                        ),
                      ),
                    ),
@@ -166,19 +175,21 @@ class _ProfileScreenState extends State<ProfileScreen>{
                              MaterialPageRoute(builder: (context) => ManagerScreen()),
                            );
                          },
-                         child: Row(
-                           crossAxisAlignment: CrossAxisAlignment.start,
-                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           children: [
-                             Row(
-                               children: [
-                                 Icon(Icons.manage_accounts_outlined),
-                                 SizedBox(width: 10,),
-                                 Text("Công cụ quản trị",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
-                               ],
-                             ),
-                             Icon(Icons.navigate_next_outlined),
-                           ],
+                         child: Center(
+                           child: Row(
+                             crossAxisAlignment: CrossAxisAlignment.start,
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             children: [
+                               Row(
+                                 children: [
+                                   Icon(Icons.manage_accounts_outlined),
+                                   SizedBox(width: 10,),
+                                   Text("Công cụ quản trị",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18),),
+                                 ],
+                               ),
+                               Icon(Icons.navigate_next_outlined),
+                             ],
+                           ),
                          ),
                        )
                    )
@@ -190,19 +201,21 @@ class _ProfileScreenState extends State<ProfileScreen>{
                         onTap: () async {
                           authController.signOut();
                         },
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(Icons.logout_outlined,color: Colors.redAccent,),
-                                SizedBox(width: 10,),
-                                Text("Đăng xuất",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18,color: Colors.redAccent),),
-                              ],
-                            ),
-                            Icon(Icons.navigate_next_outlined,color: Colors.redAccent,),
-                          ],
+                        child: Center(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(Icons.logout_outlined,color: Colors.redAccent,),
+                                  SizedBox(width: 10,),
+                                  Text("Đăng xuất",style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 18,color: Colors.redAccent),),
+                                ],
+                              ),
+                              Icon(Icons.navigate_next_outlined,color: Colors.redAccent,),
+                            ],
+                          ),
                         ),
                       ),
                     ),

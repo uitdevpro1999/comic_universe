@@ -58,7 +58,7 @@ class ComicController extends GetxController{
     }
     else {
       _listComicSearch.bindStream(firebaseFirestore.collection('comic').where(
-          'name', isEqualTo: name).snapshots().map((
+          'name', isGreaterThanOrEqualTo: name).snapshots().map((
           QuerySnapshot query) {
         List<ComicModel> retValue = [];
         for (var element in query.docs) {

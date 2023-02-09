@@ -37,7 +37,6 @@ class _SearchScreenState extends State<SearchScreen>{
                      comicController.getListComicSearch(value);
                  });},
                  decoration:  InputDecoration(
-                     icon: Icon(Icons.search_rounded),
                      hintText: "Nhập tên truyện......",
                      hintStyle: GoogleFonts.dosis(fontSize: 16) ,
                      enabledBorder: OutlineInputBorder(
@@ -55,7 +54,7 @@ class _SearchScreenState extends State<SearchScreen>{
                if(comicController.listComicSearch.isEmpty){
                  return Column(
                    children: [
-                     SizedBox(height: MediaQuery.of(context).size.height/2,),
+                     SizedBox(height: MediaQuery.of(context).size.height/3,),
                      Row(
                        children: [
                          SizedBox(width: MediaQuery.of(context).size.width/3.6,),
