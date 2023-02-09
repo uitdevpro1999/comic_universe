@@ -22,7 +22,7 @@ class _ViewState extends State<View> {
         child: Container(
             width:Device.screenType == ScreenType.tablet ? 70.w : 100.w ,
             height: 100.h,
-            child: const PDF(swipeHorizontal: true).cachedFromUrl(
+            child: const PDF().cachedFromUrl(
               widget.chapterurl,
               maxAgeCacheObject:Duration(hours: 5), //duration of cache
               placeholder: (progress) => Center(child: Text('Đang tải $progress %',style: GoogleFonts.dosis(fontSize: 24),)),
