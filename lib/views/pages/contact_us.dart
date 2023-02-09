@@ -42,6 +42,7 @@ class _ContactScreenState extends State<ContactScreen>{
                 child: ListView(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
+                  padding: EdgeInsets.only(left: 20, right: 20),
                   children: [
                     Container(
                       height: 50,
