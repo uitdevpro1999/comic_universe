@@ -77,7 +77,7 @@ class _ComicDetailState extends State<ComicDetail> with SingleTickerProviderStat
                                   child:  Row(
                                       children: [
                                         SizedBox(width: 5,),
-                                        Expanded(child: Text(controller.comic['name'],style: GoogleFonts.dosis(color: Colors.white,fontSize: 20),softWrap: true,),),
+                                        Flexible(child: Text(controller.comic['name'],style: GoogleFonts.dosis(color: Colors.white,fontSize: 20),softWrap: true,),),
                                       ],
                                     ),
                                 ),

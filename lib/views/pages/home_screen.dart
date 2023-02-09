@@ -119,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen>{
                                  color: Colors.black,
                                  height: 30,
                                  width: MediaQuery.of(context).size.width,
-                                 child: Expanded(child: Text(comicController.listComicView[index].name,style: GoogleFonts.dosis(color: Colors.white,fontSize: 20),)),
+                                 child: Text(comicController.listComicView[index].name,style: GoogleFonts.dosis(color: Colors.white,fontSize: 20),softWrap: true,),
                                ),
                              ),
                            ],

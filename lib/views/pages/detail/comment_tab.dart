@@ -36,7 +36,7 @@ class _CommentTabState extends State<CommentTab>{
           child: Column(
             children: [
              Container(
-               height: MediaQuery.of(context).size.height/1.593,
+               height: MediaQuery.of(context).size.height<842 ? MediaQuery.of(context).size.height/1.8 : MediaQuery.of(context).size.height/1.6 ,
                child:  Obx(() {
                  if(commentController.listComment.isEmpty){
                    return Column(

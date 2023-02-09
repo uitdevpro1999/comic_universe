@@ -26,7 +26,7 @@ class _DetailTabState extends State<DetailTab>{
              child: Column(
                children: [
                  Container(
-                   height: MediaQuery.of(context).size.height/1.6241,
+                   height: MediaQuery.of(context).size.height<842 ? MediaQuery.of(context).size.height/1.8 : MediaQuery.of(context).size.height/1.6 ,
                    child:  SingleChildScrollView(
                      child: Column(
                        children: [
