@@ -5,6 +5,7 @@ import 'package:comic_universe/views/pages/chapter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart' as res;
 class DetailTab extends StatefulWidget{
   DetailTab({Key? key}): super (key: key);
   @override
@@ -26,7 +27,7 @@ class _DetailTabState extends State<DetailTab>{
              child: Column(
                children: [
                  Container(
-                   height: MediaQuery.of(context).size.height<842 ? MediaQuery.of(context).size.height/1.8 : MediaQuery.of(context).size.height/1.6 ,
+                   height:  res.Device.screenType == res.ScreenType.tablet ? 44.8.h: MediaQuery.of(context).size.height<842 ? MediaQuery.of(context).size.height/1.77 : MediaQuery.of(context).size.height/1.57,
                    child:  SingleChildScrollView(
                      child: Column(
                        children: [
@@ -91,7 +92,6 @@ class _DetailTabState extends State<DetailTab>{
                  Align(
                      alignment: FractionalOffset.bottomCenter,
                      child: Container(
-                         height: 60,
                          child:
                              Center(
                                child: Container(

@@ -48,6 +48,7 @@ dependencies:
   file_picker: ^5.2.3
   flutter_cached_pdfview:
   awesome_dialog:
+  responsive_sizer: ^3.1.1
 
 dev_dependencies:
   flutter_test:

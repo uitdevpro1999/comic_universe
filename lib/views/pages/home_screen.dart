@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomeScreen extends StatefulWidget{
   HomeScreen({Key? key}): super (key: key);
@@ -145,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen>{
               if(comicController.listComicLike.isEmpty){
                 return Center(child: CircularProgressIndicator(),);
               }
-              return GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 4,mainAxisSpacing: 0),
+              return GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 4,mainAxisSpacing: 0,childAspectRatio: (80.w / 36.h),),
                   itemCount: comicController.listComicLike.length > 4 ? 4 : comicController.listComicLike.length,
                   shrinkWrap: true,
                   primary: false,
@@ -161,14 +162,14 @@ class _HomeScreenState extends State<HomeScreen>{
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                height: 137,
-                                width: 205,
+                                height: 17.h,
+                                width: 50.w,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(image: NetworkImage(comicController.listComicLike[index].imageurl),fit: BoxFit.cover),
                                   color: Colors.blue,
                                   borderRadius: BorderRadius.circular(5),
                                 ),),
-                              Expanded(child: Text(comicController.listComicLike[index].name,style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16),)),
+                              Expanded(child: Text(comicController.listComicLike[index].name,style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16.sp),)),
                             ],
                           )
                       ),
@@ -190,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen>{
               if(comicController.listComicCmt.isEmpty){
                 return Center(child: CircularProgressIndicator(),);
               }
-              return GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 4,mainAxisSpacing: 0),
+              return GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 4,mainAxisSpacing: 0,childAspectRatio: (80.w / 36.h),),
                   itemCount: comicController.listComicCmt.length > 4 ? 4 : comicController.listComicCmt.length,
                   shrinkWrap: true,
                   primary: false,
@@ -204,14 +205,14 @@ class _HomeScreenState extends State<HomeScreen>{
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                height: 137,
-                                width: 205,
+                                height: 17.h,
+                                width: 50.w,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(image: NetworkImage(comicController.listComicCmt[index].imageurl),fit: BoxFit.cover),
                                   color: Colors.blue,
                                   borderRadius: BorderRadius.circular(5),
                                 ),),
-                              Text(comicController.listComicCmt[index].name,style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16),),
+                              Text(comicController.listComicCmt[index].name,style: GoogleFonts.dosis(fontWeight: FontWeight.w600,fontSize: 16.sp),),
                             ],
                           )
                       ),

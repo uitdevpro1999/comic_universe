@@ -4,7 +4,7 @@ import 'package:comic_universe/controllers/like_controller.dart';
 import 'package:comic_universe/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:responsive_sizer/responsive_sizer.dart' as res;
 import 'package:get/get.dart';
 
 import '../../../controllers/comic_controller.dart';
@@ -36,7 +36,7 @@ class _CommentTabState extends State<CommentTab>{
           child: Column(
             children: [
              Container(
-               height: MediaQuery.of(context).size.height<842 ? MediaQuery.of(context).size.height/1.8 : MediaQuery.of(context).size.height/1.6 ,
+               height:  res.Device.screenType == res.ScreenType.tablet ? 44.5.h: MediaQuery.of(context).size.height<842 ? MediaQuery.of(context).size.height/1.8 : MediaQuery.of(context).size.height/1.58,
                child:  Obx(() {
                  if(commentController.listComment.isEmpty){
                    return Column(

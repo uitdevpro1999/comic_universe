@@ -3,6 +3,7 @@ import 'package:comic_universe/views/pages/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'controllers/auth_controller.dart';
 
@@ -18,15 +19,19 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Comic Universe',
-      theme: ThemeData(
-        primarySwatch: Colors.grey,
-      ),
-      // we don't really have to put the home page here
-      // GetX is going to navigate the user and clear the navigation stack
-      home: const Center(child: CircularProgressIndicator(),),
+    return ResponsiveSizer(
+      builder: (context, orientation, screenType) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Comic Universe',
+          theme: ThemeData(
+            primarySwatch: Colors.grey,
+          ),
+          // we don't really have to put the home page here
+          // GetX is going to navigate the user and clear the navigation stack
+          home: const Center(child: CircularProgressIndicator(),),
+        );
+      },
     );
   }
 }

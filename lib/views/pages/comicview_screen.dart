@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 class View extends StatefulWidget {
   String name;
   String chapterurl;
@@ -17,13 +18,17 @@ class _ViewState extends State<View> {
         backgroundColor: Colors.white,
         title: Text(widget.name),
       ),
-      body: Container(
-          child: const PDF(swipeHorizontal: true).cachedFromUrl(
-            widget.chapterurl,
-            maxAgeCacheObject:Duration(hours: 5), //duration of cache
-            placeholder: (progress) => Center(child: Text('Đang tải $progress %',style: GoogleFonts.dosis(fontSize: 24),)),
-            errorWidget: (error) => Center(child: Text(error.toString())),
-          )
+      body: Center(
+        child: Container(
+            width:Device.screenType == ScreenType.tablet ? 70.w : 100.w ,
+            height: 100.h,
+            child: const PDF(swipeHorizontal: true).cachedFromUrl(
+              widget.chapterurl,
+              maxAgeCacheObject:Duration(hours: 5), //duration of cache
+              placeholder: (progress) => Center(child: Text('Đang tải $progress %',style: GoogleFonts.dosis(fontSize: 24),)),
+              errorWidget: (error) => Center(child: Text(error.toString())),
+            )
+        ),
       )
     );
   }

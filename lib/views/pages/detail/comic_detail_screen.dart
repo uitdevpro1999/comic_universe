@@ -59,7 +59,7 @@ class _ComicDetailState extends State<ComicDetail> with SingleTickerProviderStat
                                 alignment: FractionalOffset.topLeft,
                                 child: Column(
                                   children: [
-                                    SizedBox(height: 8,),
+                                    SizedBox(height: 25,),
                                     IconButton(onPressed: (){
                                       Get.back();
                                     }, icon: Icon(Icons.arrow_back,size: 30,)),
