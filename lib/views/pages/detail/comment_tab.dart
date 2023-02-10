@@ -39,16 +39,10 @@ class _CommentTabState extends State<CommentTab>{
                height:  res.Device.screenType == res.ScreenType.tablet ? 44.5.h: MediaQuery.of(context).size.height<842 ? MediaQuery.of(context).size.height/1.8 : MediaQuery.of(context).size.height/1.58,
                child:  Obx(() {
                  if(commentController.listComment.isEmpty){
-                   return Column(
-                     children: [
-                       SizedBox(height: MediaQuery.of(context).size.height/1.82/2,),
-                       Row(
-                         children: [
-                           SizedBox(width: MediaQuery.of(context).size.width/3.6,),
-                           Text("Chưa có bình luận nào",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
-                         ],
-                       )
-                     ],
+                   return Center(
+                     child:
+                             Text("Chưa có bình luận nào",style: GoogleFonts.dosis(fontSize: 24,fontWeight: FontWeight.w600),),
+
                    );
                  }
                  return ListView.builder(
