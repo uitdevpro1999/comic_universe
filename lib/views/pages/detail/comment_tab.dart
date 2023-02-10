@@ -86,7 +86,7 @@ class _CommentTabState extends State<CommentTab>{
                                   ],
                                 ),
                               ),
-                               userController.user['id'] == commentController.listComment[index].userid ?
+                               userController.user['id'] == commentController.listComment[index].userid || userController.user['role'] == "admin" ?
                                IconButton(onPressed: (){
                                  commentController.deleteComment(comicController.comic['id'], commentController.listComment[index].id);
                                  comicController.updateCmtCount(comicController.comic['id'], "down");

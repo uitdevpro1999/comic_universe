@@ -13,7 +13,7 @@ class ChapterController extends GetxController{
   Rx<File>? chapterFile;
   void getListChapter(String comicid) {
     _listChapter.bindStream(
-      firebaseFirestore.collection('comic').doc(comicid).collection('chapter').snapshots().map((QuerySnapshot query) {
+      firebaseFirestore.collection('comic').doc(comicid).collection('chapter').orderBy("chaptername",descending: false).snapshots().map((QuerySnapshot query) {
         List<ChapterModel> retValue = [];
         for (var element in query.docs) {
           retValue.add(ChapterModel.fromSnap(element));
