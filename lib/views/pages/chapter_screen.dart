@@ -2,6 +2,7 @@ import 'package:comic_universe/controllers/comic_controller.dart';
 import 'package:comic_universe/views/pages/comicview_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../controllers/chapter_controller.dart';
 import 'package:get/get.dart';
@@ -50,10 +51,9 @@ class _ChapterScreenState extends State<ChapterScreen>{
                     return
                       Container(
                         height: 75,
-                        width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.only(left: 5,bottom: 5,right: 5),
+                        margin: const EdgeInsets.only(left: 5,bottom: 5,right: 5),
                         child: Card(
-                          color: Colors.grey,
+                          color: Colors.deepOrange,
                           child: InkWell(
                             onTap: (){
                               comicController.updateViewCount(comicController.comic['id']);

@@ -20,8 +20,6 @@ class _ViewState extends State<View> {
       ),
       body: Center(
         child: Container(
-            width:Device.screenType == ScreenType.tablet ? 70.w : 100.w ,
-            height: 100.h,
             child: const PDF().cachedFromUrl(
               widget.chapterurl,
               maxAgeCacheObject:Duration(hours: 5), //duration of cache

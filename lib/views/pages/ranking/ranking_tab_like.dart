@@ -2,6 +2,7 @@ import 'package:comic_universe/controllers/comic_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../detail/comic_detail_screen.dart';
 class RankingLike extends StatefulWidget{
@@ -74,7 +75,7 @@ class _RankingLikeState extends State<RankingLike>{
                                   Text("Lượt thích: " + comicController.listComicLike[index].likecount.toString(),style: GoogleFonts.dosis(fontSize: 16),),
                                 ],
                               ),),
-                              Container(width: 15,),
+                              Container(width: 5.w,),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,

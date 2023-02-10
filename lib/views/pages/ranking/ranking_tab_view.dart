@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:responsive_sizer/responsive_sizer.dart' as scr;
 
 import '../../../controllers/comic_controller.dart';
 import '../detail/comic_detail_screen.dart';
@@ -76,7 +77,7 @@ class _RankingViewState extends State<RankingView>{
                                 ],
                               ),
                             ),
-                             Container(width: 15,),
+                             Container(width: scr.Device.screenType == scr.ScreenType.tablet ? 15.w : 5.w,),
 
                              Column(
                                mainAxisAlignment: MainAxisAlignment.center,
