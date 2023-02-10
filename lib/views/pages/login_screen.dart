@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen>{
              mainAxisAlignment: MainAxisAlignment.start,
              crossAxisAlignment: CrossAxisAlignment.start,
              children: [
-               SizedBox(height: MediaQuery.of(context).size.height/7),
+               SizedBox(height: MediaQuery.of(context).size.height/8),
                Text("Đăng nhập\nTài khoản",style: GoogleFonts.dosis(fontSize: 48,fontWeight: FontWeight.w600),),
                SizedBox(height:100,),
                TextFormField(

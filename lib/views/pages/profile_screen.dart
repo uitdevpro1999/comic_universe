@@ -93,8 +93,18 @@ class _ProfileScreenState extends State<ProfileScreen>{
                     ),
                     InkWell(
                       onTap: (){
-                        var toast = CustomToast(msg: "Chúng tôi luôn bảo mật thông tin của bạn mọi lúc, mọi nơi ^_^");
-                        toast.showSuccessToast();
+                        AwesomeDialog(
+                          titleTextStyle: GoogleFonts.dosis(fontWeight: FontWeight.w600),
+                          descTextStyle: GoogleFonts.dosis(),
+                          context: context,
+                          dialogType: DialogType.info,
+                          animType: AnimType.rightSlide,
+                          title: 'Thông tin',
+                          desc: 'Chúng tôi luôn bảo mật thông tin của bạn mọi lúc, mọi nơi',
+                          btnOkText: "Xác nhận",
+                          btnOkOnPress: () {
+                          },
+                        )..show();
                       },
                       child: Container(
                         height: 50,
@@ -118,8 +128,18 @@ class _ProfileScreenState extends State<ProfileScreen>{
                     ),
                     InkWell(
                        onTap: (){
-                         var toast = CustomToast(msg: "Vui lòng gửi email đến nqtrung1999@gmail.com");
-                         toast.showSuccessToast();
+                         AwesomeDialog(
+                           titleTextStyle: GoogleFonts.dosis(fontWeight: FontWeight.w600),
+                           descTextStyle: GoogleFonts.dosis(),
+                           context: context,
+                           dialogType: DialogType.info,
+                           animType: AnimType.rightSlide,
+                           title: 'Thông tin',
+                           desc: 'Vui lòng gửi email đến ad.viecomic@gmail.com',
+                           btnOkText: "Xác nhận",
+                           btnOkOnPress: () {
+                           },
+                         )..show();
                        },
                       child: Container(
                         height: 50,
